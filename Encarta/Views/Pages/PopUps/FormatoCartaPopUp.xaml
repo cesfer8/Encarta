@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="Encarta.Views.Pages.PopUps.FormatoCartaPopUp"
+                  CloseWhenBackgroundIsClicked="True">
+    <Frame 
+        Margin="20"
+        HorizontalOptions="Center" 
+        VerticalOptions="Center" 
+        BackgroundColor="#e9e4e1"
+        CornerRadius="20">
+        <StackLayout 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+            <Label Text="Selecciona formato" HorizontalOptions="Center" FontSize="Title" FontAttributes="Bold" TextColor="{StaticResource Blue}"/>
+            <Grid ColumnDefinitions="*,*" Margin="10,20,10,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Button Text="QR" Clicked="QR_Clicked" CornerRadius="15"/>
+                <Button Text="Foto" Grid.Column="1" Clicked="Foto_Clicked" CornerRadius="15"/>
+            </Grid>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

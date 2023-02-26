@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vms="clr-namespace:Encarta.ViewModels"
+             xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             x:Class="Encarta.Views.Pages.QrScannerPage"
+             Title="Escaner"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             BackgroundImageSource="{local:ImageResource Source=Encarta.images.background_tenedores.png}"
+             Shell.TabBarIsVisible="False"
+             x:Name="this"
+             >
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid RowDefinitions="*" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <!--<zxing:ZXingScannerView x:Name="scanner" Grid.Row="1" IsScanning="True" ScanResultCommand="{Binding OnScanResultCommand}"/>-->
+                <Button Text="Escanear" VerticalOptions="End" Command="{Binding EscanearCommand}"/>
+            </Grid>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

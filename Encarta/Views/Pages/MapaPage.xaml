@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vms="clr-namespace:Encarta.ViewModels" 
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Encarta.Views.Pages.MapaPage"
+             Title="Mapa"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             BackgroundImageSource="{local:ImageResource Source=Encarta.images.background_tenedores.png}"
+             Shell.TabBarIsVisible="False"
+             >
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackButtonCommand}"/>
+    </Shell.BackButtonBehavior>
+    
+    <ContentPage.Content>
+        <StackLayout Margin="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid RowDefinitions="Auto,*,Auto" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Label Text="¿Dónde está el restaurante?" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="{StaticResource Blue}"/>
+                <maps:Map 
+                    Grid.Row="1"
+                    x:Name="map" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                    IsShowingUser="True" 
+                    MapClicked="Map_MapClicked" 
+                    MapType="Street" 
+                />
+                <Button Text="Continuar" Margin="10" Grid.Row="2" Command="{Binding ContinuarCommand}" CornerRadius="15"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

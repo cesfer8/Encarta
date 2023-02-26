@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                  xmlns:sf="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+                  x:Class="Encarta.Views.Pages.PopUps.CrearAdminPopUp"
+                  CloseWhenBackgroundIsClicked="True">
+    <Frame 
+        Margin="20"
+        HorizontalOptions="Center" 
+        VerticalOptions="Center" 
+        BackgroundColor="#e9e4e1"
+        Padding="5,20,5,20"
+        CornerRadius="20">
+        <StackLayout 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+            <Label Text="Correo del nuevo usuario Administrador" TextColor="{StaticResource Blue}" FontSize="Title" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+            <StackLayout Margin="15,0,15,0">
+                <sf:SfTextInputLayout ContainerType="Outlined">
+                    <Entry Text="{Binding CorreoIntroducido}" Keyboard="Email"/>
+                </sf:SfTextInputLayout>
+                <Button Text="Aceptar" BackgroundColor="{StaticResource Primary}" Command="{Binding AceptarCommand}" CornerRadius="15"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

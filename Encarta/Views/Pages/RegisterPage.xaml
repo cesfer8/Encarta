@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vms="clr-namespace:Encarta.ViewModels" xmlns:sf="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             mc:Ignorable="d"
+             x:Class="Encarta.Views.Pages.RegisterPage"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <Grid Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowDefinitions="*,*,Auto">
+            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Image Source="{local:ImageResource Source=Encarta.images.icono1.png}"/>
+            </StackLayout>
+            <StackLayout Grid.Row="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <sf:SfTextInputLayout Hint="Nombre" ContainerType="Outlined" HasError="{Binding NombreError}" ErrorText="Introduce nombre">
+                    <Entry Text="{Binding Usuario.Nombre}"/>
+                </sf:SfTextInputLayout>
+                
+                <sf:SfTextInputLayout Hint="Correo" ContainerType="Outlined" HasError="{Binding CorreoError}" ErrorText="Introduce correo">
+                    <Entry Text="{Binding Usuario.Correo}" Keyboard="Email"/>
+                </sf:SfTextInputLayout>
+
+                <sf:SfTextInputLayout Hint="Contraseña" ContainerType="Outlined" EnablePasswordVisibilityToggle="True"  HasError="{Binding ContraseniaError}" ErrorText="{Binding ContraseniaErrorText}">
+                    <Entry Text="{Binding Contrasenia}" IsPassword="True"/>
+                </sf:SfTextInputLayout>
+
+                <Label Text="El correo ya esta registrado o correo invalido" TextColor="{StaticResource Red}" Margin="0,10,0,0" IsVisible="{Binding CuentaYaExiste}"/>
+                <Label Text="Ya tengo una cuenta" TextColor="{StaticResource Blue}" TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OpenLoginCommand}"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <Button Text="Registrarme" Grid.Row="2" Command="{Binding RegisterCommand}" CornerRadius="15"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

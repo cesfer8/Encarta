@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Encarta.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#FC9D37</Color>
+            <Color x:Key="PrimaryClear">#FDC283</Color>
+            <Color x:Key="Red">#ff4b0f</Color>
+            <Color x:Key="Blue">#0362c8</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <!--FONT AWESOME-->
+            <!--<x:String x:Key="Star">&#xf005;</x:String>-->
+            <!--<OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FontAwesome5Regular400.otf#Regular"/>
+                <On Platform="iOS" Value="FontAwesome5Regular400"/>
+            </OnPlatform>
+            
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FontAwesome5BrandsRegular400.otf#Brands"/>
+                <On Platform="iOS" Value="FontAwesome5BrandsRegular400"/>
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FontAwesome5Solid900.otf#Solid"/>
+                <On Platform="iOS" Value="FontAwesome5BrandsSolid900"/>
+            </OnPlatform>-->
+            
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>

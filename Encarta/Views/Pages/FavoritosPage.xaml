@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vms="clr-namespace:Encarta.ViewModels" xmlns:converters="clr-namespace:Encarta.Converters" 
+             xmlns:sf="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             x:Class="Encarta.Views.Pages.FavoritosPage"
+             Title="Favoritos"
+             x:Name="this"
+             BackgroundImageSource="{local:ImageResource Source=Encarta.images.background_tenedores.png}"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding NuevaCartaCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="fontello"
+                    Glyph="&#xE80A;"
+                    Color="White"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ContentView>
+            <!--Pongo contentview para arreglar un bug-->
+            <StackLayout Margin="10,5,10,0">
+                <sf:SfTextInputLayout ContainerType="Outlined" HasError="{Binding CorreoError}" ErrorText="Introduce correo" Margin="10,0,10,-20">
+                    <SearchBar x:Name="searchEntry" Text="{Binding TextoFiltro}" Placeholder="Nombre del Restaurante" SearchButtonPressed="SearchBar_SearchButtonPressed" Margin="-10,10,4,4"/>
+                </sf:SfTextInputLayout>
+                <Label Margin="15,0,0,0" IsVisible="{Binding IsFiltered}" Text="Quitar filtros" TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding QuitarFiltrosCommand}" Tapped="TapGestureRecognizer_RemoveFilter"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                
+                <ScrollView>
+                    <FlexLayout
+                        Direction="Row"
+                        Wrap="Wrap"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        BindableLayout.ItemsSource="{Binding ListadoCartas}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="20" Margin="10,10,10,-20" HeightRequest="200" WidthRequest="125">
+                                    <Grid RowDefinitions="*,*,Auto" Margin="-10,-10,-10,-5">
+                                        <Frame BorderColor="Gray" CornerRadius="5" Padding="5">
+                                            <Label Text="{Binding Restaurante.Nombre}" MaxLines="2" TextColor="{StaticResource Primary}" FontAttributes="Bold" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                        </Frame>
+                                        <StackLayout Grid.Row="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                                            <Label Text="&#xE806;"
+                                                   IsVisible="{Binding IsQR}"
+                                                   HorizontalOptions="CenterAndExpand" 
+                                                   VerticalOptions="CenterAndExpand" 
+                                                   FontSize="55"  
+                                                   FontFamily="fontello"/>
+                                            <Label Text="&#xE807;"
+                                                   IsVisible="{Binding IsQR, Converter={StaticResource InverseBoolConverter}}"
+                                                   HorizontalOptions="CenterAndExpand" 
+                                                   VerticalOptions="CenterAndExpand"
+                                                   FontSize="45"  
+                                                   FontFamily="fontello"/>
+                                        </StackLayout>
+                                        <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                            <Label Text="&#xE801;"
+                                                   TextColor="{StaticResource Primary}"
+                                                   HorizontalOptions="Start" 
+                                                   VerticalOptions="CenterAndExpand"
+                                                   FontSize="25"  
+                                                   FontFamily="fontello">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding BindingContext.FavoritoPulsadoCommand, Source={x:Reference this}}"
+                                                                      CommandParameter="{Binding .}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                            <Label Text="{Binding CuantosDiasHace}" 
+                                                   FontAttributes="Italic" 
+                                                   FontSize="12" Grid.Row="2" 
+                                                   MaxLines="1" 
+                                                   HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                        </StackLayout>
+                                    </Grid>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.CartaPulsadaCommand, Source={x:Reference this}}"
+                                                                  CommandParameter="{Binding .}" Tapped="TapGestureRecognizer_Tapped"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+                </ScrollView>
+            </StackLayout>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

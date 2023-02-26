@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vms="clr-namespace:Encarta.ViewModels"
+             x:Class="Encarta.Views.Pages.HomePage"
+             Title="Inicio"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             BackgroundImageSource="{local:ImageResource Source=Encarta.images.background_home1.png}"
+             Shell.NavBarIsVisible="False"
+             >
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="FillAndExpand">
+            <Grid
+                Padding="0" 
+                RowDefinitions="0.5*,*,*,*" 
+                VerticalOptions="FillAndExpand">
+
+                <StackLayout Margin="-30,0,-30,0">
+                    <Image Source="{local:ImageResource Source=Encarta.images.icono2.png}" VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+                
+
+                <StackLayout Grid.Row="1">
+                    <Label Text="¡Busca tu carta en el mapa!" FontSize="15" HorizontalTextAlignment="Start" Margin="40,0,0,-10" FontAttributes="Bold" TextColor="{StaticResource Blue}"/>
+                    <Frame
+                        Margin="10" 
+                        CornerRadius="20"
+                        Padding="7"
+                        VerticalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource Primary}">
+                        
+                        <Frame CornerRadius="15" Padding="-20">
+                            <StackLayout>
+                                <!--<Label Text="&#xF279;" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="50" FontFamily="fontello"/>
+                            <Label Text="BUSCAR" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="Title"/>-->
+                                <Image Source="{local:ImageResource Source=Encarta.images.map_frame_bg.png}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                        </Frame>
+                        
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="frame_Tapped" Command="{Binding BuscarPulsadoCommand}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="2">
+                    <Label Text="¡Sube tu carta!" FontSize="15" HorizontalTextAlignment="Start" FontAttributes="Bold" Margin="40,0,0,-10" TextColor="{StaticResource Blue}"/>
+                    <Grid 
+                        Margin="0" 
+                        Padding="0"
+                        ColumnDefinitions="*,*"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                        <Frame 
+                            Margin="10"
+                            Grid.Column="0"
+                            CornerRadius="20" 
+                            Padding="7"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource Primary}">
+                            <Frame CornerRadius="15">
+                                <Grid RowDefinitions="*">
+                                    <Label Text="&#xE806;" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="75" FontFamily="fontello" TextColor="{StaticResource PrimaryClear}"/>
+                                </Grid>
+                            </Frame>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="frame_Tapped" Command="{Binding SubirQrCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+
+                        <Frame 
+                            Margin="10"
+                            Grid.Column="1"
+                            CornerRadius="20" 
+                            Padding="7"
+                            VerticalOptions="FillAndExpand"
+                            BackgroundColor="{StaticResource Primary}">
+                            <Frame 
+                                CornerRadius="15">
+                                <Grid RowDefinitions="*">
+                                    <Label Text="&#xE807;" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="65" FontFamily="fontello" TextColor="{StaticResource PrimaryClear}"/>
+                                </Grid>
+                            </Frame>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="frame_Tapped" Command="{Binding SubirFotoCommand}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        
+                    </Grid>
+                </StackLayout>
+
+
+                <StackLayout Grid.Row="3" VerticalOptions="End">
+                    <Button Text="Administrar cartas" IsVisible="{Binding IsAdmin}" Command="{Binding AdministrarCartasCommand}" BackgroundColor="#ff4b0f" CornerRadius="15"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

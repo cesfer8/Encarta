@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="Encarta.Views.Pages.PopUps.SobreNosotrosPopUp"
+                  CloseWhenBackgroundIsClicked="True">
+    <Frame 
+        Margin="20"
+        Padding="5,20,5,20"
+        HorizontalOptions="Center" 
+        VerticalOptions="Center" 
+        BackgroundColor="#e9e4e1"
+        CornerRadius="20">
+        <StackLayout 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand">
+            <Label Text="¿Quienes somos?" HorizontalOptions="Center" FontSize="Title" FontAttributes="Bold" TextColor="{StaticResource Blue}"/>
+            <Label Text="Aplicación desarrollada por el programador César Fernández" FontSize="Medium" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+            <Label Text="cesar.fernandezgonzalez@iesmiguelherrero.com" FontAttributes="Italic" FontSize="12" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

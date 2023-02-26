@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vms="clr-namespace:Encarta.ViewModels" 
+             xmlns:converters="clr-namespace:Encarta.Converters"
+             x:Class="Encarta.Views.Pages.VerCartasReportadasPage"
+             Title="Administrar cartas"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             BackgroundImageSource="{local:ImageResource Source=Encarta.images.background_tenedores.png}"
+             x:Name="this"
+             >
+    <ContentPage.Resources>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5,10,5,10">
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    BindableLayout.ItemsSource="{Binding ListadoCartas}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="20" Padding="15">
+                                <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,0">
+                                    <Grid RowDefinitions="*,Auto">
+                                        <Label Grid.Row="0" Text="{Binding CuantasDenuncias}" Margin="0,-5,0,-5" FontSize="Title" TextColor="{StaticResource Red}"/>
+                                        <Label Grid.Row="1" Text="{Binding CuantosDiasHace}" FontSize="Small" FontAttributes="Italic"/>
+                                    </Grid>
+                                    
+                                    <Label IsVisible="{Binding IsQR}" 
+                                           Text="&#xE806;" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="45" FontFamily="fontello"/>
+                                    <Label IsVisible="{Binding IsQR, Converter={StaticResource InverseBoolConverter}}" 
+                                           Text="&#xE807;" Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" FontSize="35" FontFamily="fontello"/>
+                                </Grid>
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.FramePulsadoCommand, Source={x:Reference this}}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

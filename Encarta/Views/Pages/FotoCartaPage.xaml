@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vms="clr-namespace:Encarta.ViewModels"
+             x:Class="Encarta.Views.Pages.FotoCartaPage"
+             Title="Tu nueva carta"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             BackgroundImageSource="{local:ImageResource Source=Encarta.images.background_tenedores.png}"
+             Shell.TabBarIsVisible="False"
+             x:Name="this"
+             >
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid Margin="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" RowDefinitions="Auto,*,Auto">
+                <Label Text="¡Nos está entrando hambre solo con leerlo!" Margin="15,10,15,0" FontSize="20" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="{StaticResource Blue}"/>
+
+                <StackLayout VerticalOptions="Center" Grid.Row="1">
+                    <Frame 
+                        Padding="7"
+                        BackgroundColor="{StaticResource Primary}">
+                        <Grid>
+                            <Image Source="{Binding ImageSource}" VerticalOptions="Start" BackgroundColor="{StaticResource Primary}"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <Grid RowDefinitions="Auto,*" Grid.Row="2" VerticalOptions="End" HorizontalOptions="FillAndExpand" Margin="0">
+                    <Label Text="¿Se lee todo bien?" FontSize="20" HorizontalTextAlignment="Center" TextColor="{StaticResource Blue}"/>
+                    <Grid Margin="0,15,0,0" Grid.Row="1" ColumnDefinitions="*,*">
+                        <Button Text="Repetir foto" Command="{Binding SacarFotoCommand}"/>
+                        <Button Text="Continuar" Grid.Column="1" Command="{Binding ContinuarCommand}"/>
+                    </Grid>
+                </Grid>
+                
+            </Grid>
+            
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

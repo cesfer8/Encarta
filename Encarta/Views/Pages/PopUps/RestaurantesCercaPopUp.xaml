@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage  xmlns:pages="http://rotorgames.com"
+                  xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="Encarta.Views.Pages.PopUps.RestaurantesCercaPopUp"
+                  CloseWhenBackgroundIsClicked="True"
+                  x:Name="this">
+    <Frame 
+        Margin="20"
+        HorizontalOptions="Center" 
+        VerticalOptions="Center" 
+        BackgroundColor="#e9e4e1"
+        CornerRadius="20">
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <Label Text="¿Estás buscando uno de estos restaurantes?" FontAttributes="Bold"  HorizontalOptions="Center" TextColor="{StaticResource Blue}" HorizontalTextAlignment="Center" FontSize="Title"/>
+
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="5,10,5,20">
+                <StackLayout 
+                    HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
+                    BindableLayout.ItemsSource="{Binding ListadoRestaurantes}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="20" Padding="15">
+                                <StackLayout Margin="0,-5,0,-5">
+                                    <Label Text="{Binding Nombre}" MaxLines="2"/>
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.FramePulsadoCommand, Source={x:Reference this}}"
+                                                          CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <Button Text="Crear otro restaurante" Command="{Binding OtroRestauranteCommand}" CornerRadius="15"/>
+        </StackLayout>
+    </Frame>
+</pages:PopupPage>

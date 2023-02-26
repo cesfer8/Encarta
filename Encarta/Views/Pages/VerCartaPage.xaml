@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vms="clr-namespace:Encarta.ViewModels" 
+             xmlns:sync="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms" 
+             xmlns:converters="clr-namespace:Encarta.Converters" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="Encarta.Views.Pages.VerCartaPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:Encarta.Utilidades"
+             BackgroundImageSource="{local:ImageResource Source=Encarta.images.background_home2.png}"
+             x:Name="this"
+             >
+    <ContentPage.Resources>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid Margin="20" RowDefinitions="*,Auto">
+            <ScrollView>
+                <StackLayout Grid.Row="0">
+            
+                    <Frame CornerRadius="10" Padding="0" IsVisible="{Binding Carta.IsQR, Converter={StaticResource InverseBoolConverter}}">
+                        <sync:SfExpander Margin="0" AnimationDuration="0" BackgroundColor="White" HeaderIconPosition="Start">
+                            <sync:SfExpander.Header>
+                                <Grid Margin="0" ColumnDefinitions="*,Auto">
+                                    <StackLayout VerticalOptions="CenterAndExpand">
+                                        <Label Text="Ver Carta" Margin="10,0,0,0" FontSize="Title"/>
+                                        <!--<Label Text="Pulsar para ver" Margin="10,-5,0,0" Grid.Row="1" FontAttributes="Italic" FontSize="Micro"/>-->
+                                    </StackLayout>
+                                    <StackLayout Grid.Column="1" Margin="0" Padding="0">
+                                        <Label 
+                                            Text="&#xE807;" 
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand" 
+                                            FontSize="45"
+                                            Margin="6"
+                                            FontFamily="fontello"/>
+                                    </StackLayout>
+                                </Grid>
+
+                            </sync:SfExpander.Header>
+
+                            <sync:SfExpander.Content>
+                                <Grid>
+                                    <Image Source="{Binding ImageSource}" Margin="10"/>
+                                </Grid>
+                            </sync:SfExpander.Content>
+                        </sync:SfExpander>
+                    </Frame>
+
+                    <Frame x:Name="qrFrame" CornerRadius="10" IsVisible="{Binding Carta.IsQR}" Margin="0">
+                        <Grid Margin="0" ColumnDefinitions="*,Auto">
+                            <StackLayout Margin="-5,-15,0,-15">
+                                <Label Text="Enlace QR" FontSize="Title"/>
+                                <Label Text="{Binding Carta.UrlQR}" Margin="0,-5,0,0" TextColor="{StaticResource Primary}" MaxLines="1"/>
+                                <Label Text="Pulsar para ver" FontAttributes="Italic" FontSize="Micro"/>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" Margin="0" Padding="0">
+                                <Label 
+                                    Text="&#xE806;" 
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand" 
+                                    FontSize="55"
+                                    Margin="-8,-5,-8,-8"
+                                    FontFamily="fontello"/>
+                            </StackLayout>
+                        </Grid>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EnlaceQrCommand}" Tapped="qrFrame_Tapped"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+            
+                    <Frame CornerRadius="10" Margin="0,20,0,5">
+                        <StackLayout Margin="-20">
+                            <maps:Map x:Name="map" HeightRequest="250" IsShowingUser="False" HasScrollEnabled="False" HasZoomEnabled="True"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="{Binding Carta.CuantosDiasHace}" FontSize="Medium"/>
+                    <Label 
+                        Text="&#xE801;" 
+                        IsVisible="{Binding IsFavorito}"
+                        TextColor="{StaticResource Primary}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center" 
+                        FontSize="40"
+                        Margin="6"
+                        FontFamily="fontello">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeFavCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label 
+                        Text="&#xE808;" 
+                        IsVisible="{Binding IsFavorito, Converter={StaticResource InverseBoolConverter}}"
+                        TextColor="{StaticResource Primary}"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center" 
+                        FontSize="40"
+                        Margin="6"
+                        FontFamily="fontello">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ChangeFavCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </ScrollView>
+            <StackLayout IsVisible="{Binding IsAdmin, Converter={StaticResource InverseBoolConverter}}" Grid.Row="1" Orientation="Horizontal">
+                <Button Text="Borrar" IsVisible="{Binding EsMiCarta}" Command="{Binding BorrarCartaCommand}" BackgroundColor="OrangeRed" HorizontalOptions="FillAndExpand" CornerRadius="15"/>
+                <Button Text="Denunciar" IsVisible="{Binding EsMiCarta, Converter={StaticResource InverseBoolConverter}}" Command="{Binding DenunciarCartaCommand}" BackgroundColor="OrangeRed" HorizontalOptions="FillAndExpand" CornerRadius="15"/>
+                <Button Text="Abrir Maps" Command="{Binding AbrirMapsCommand}" BackgroundColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand" CornerRadius="15"/>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsAdmin}" Grid.Row="1" Orientation="Vertical">
+                <StackLayout  Orientation="Horizontal">
+                    <Button Text="Bloquear usuario" Command="{Binding BloquearUsuarioCommand}" BackgroundColor="OrangeRed" HorizontalOptions="FillAndExpand" CornerRadius="15"/>
+                    <Button Text="Borrar carta" Command="{Binding BorrarCartaCommand}" BackgroundColor="{StaticResource Primary}" HorizontalOptions="FillAndExpand" CornerRadius="15"/>
+                </StackLayout>
+                
+                <Button Text="Quitar Denuncias" Command="{Binding QuitarDenunciasCommand}" BackgroundColor="Green" HorizontalOptions="FillAndExpand" CornerRadius="15"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
