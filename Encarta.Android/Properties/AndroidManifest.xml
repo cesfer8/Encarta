@@ -3,7 +3,7 @@
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
 	<application android:label="Encarta.Android" android:theme="@style/MainTheme">
 		<!--MAPA-->
-		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBnZOFfo-R_BGCAPMY7Ho7UECnZCCLSSIM" />
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="" />
 	</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
